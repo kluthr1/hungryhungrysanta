@@ -1,0 +1,394 @@
+body{
+	margin:0;
+  padding: 0;
+	font-family: 'Roboto Condensed', sans-serif;
+	background: #fff;
+	position: relative;
+
+}
+
+.banner {
+    background: url(../images/background_2.jpg) no-repeat center 0px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+		display: flex;
+		top:0;
+		width: 100%;
+		position: absolute;
+		z-index: -1;
+
+	/* position: relative; */
+}
+.logo_img{
+	height: 80px;
+}
+.autocomplete_holder{
+  margin-left: 0px;
+  padding-right: 0px;
+	padding-left: 0px;
+}
+
+.currentloc_holder {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.option_holder{
+	padding-top:0.5em;
+	padding-left: 30px;
+	padding-right:30px;
+}
+
+#result_description{
+	padding: 1em;;
+	text-align: center;
+}
+
+.ri_addr_text{
+	float:right;
+	color: #A9A9A9;
+	margin-bottom: 0.5em;
+
+}
+.ri_name_text{
+	float:left;
+	margin-bottom: 0.5em;
+}
+.map_container {
+	padding: 0;
+}
+
+.result_text_row{
+padding:0.5em;
+}
+
+#results {
+	padding: 0;
+	height: 50vw;
+	overflow-y: scroll;
+	margin-right: 10px;
+margin-left: -10px;
+
+}
+#opennow{
+  /* font-weight: bold; */
+  /* font-size: 12px; */
+  /* font-family: Arial Unicode MS; */
+  color: #CC231E;
+  margin-left: 2%;
+  text-align: center;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#distance{
+  /* font-weight: bold;
+  font-size: 25px;
+  font-family: Arial Unicode MS; */
+  color: #CC231E;
+  padding-left: 0px;
+  padding-right: 0px;
+
+}
+
+.search_bar_holder{
+	padding-left: 30px;
+	padding-right: 30px;
+
+}
+
+.open_status {
+margin:auto;
+padding-left: 40px;
+padding-bottom: 10px;
+color: #CC231E;
+}
+.app_description{
+	text-align:center;
+}
+#search_button{
+	border-radius: 10px;
+    border: 1px solid black;
+    background-color: #34A65F;
+		font-family: 'Varela Round';
+}
+
+#mylocation{
+	border-radius: 10px;
+    border: 1px solid black;
+    background-color: #34A65F;
+		font-family: 'Varela Round';
+}
+
+.map_param_holder{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #F5F5F5;
+  border-bottom:2px solid #CC231E;
+}
+
+#autocomplete {
+  /* margin-left: 30px; */
+	height: 100%;
+}
+
+#listing {
+  position: absolute;
+  width: 100%;
+  height: 98%;
+  overflow-y: auto;
+  cursor: pointer;
+  top:0;
+  right: 0;
+}
+
+.overlay {
+  background: #ffffff;
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+  opacity: .80;
+}
+
+#iw-url{
+	font-size: 16px;
+	font-weight: 500;
+	padding-left: 0.5em;
+	vertical-align: bottom;
+}
+#sticky-footer{
+	color: white;
+}
+p {
+	margin: 0 0 .5em;
+}
+
+.iw_attribute_name {
+	padding-top: 0.5em;
+}
+
+.iw-address{
+	padding-top: 0.5em;
+}
+.hotelIcon {
+	border-radius: 15px;
+}
+
+.spinner {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid firebrick;
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.logo {
+      line-height: 60px;
+      position: fixed;
+      float: left;
+      margin: 16px 46px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 2px;
+}
+.slogan{
+	margin: auto;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 600;
+	font-style: italic;
+	text-align: center;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+	background: #0F8A5F;
+
+}
+
+
+nav {
+      position: fixed;
+      width: 100%;
+      line-height: 60px;
+}
+
+nav ul {
+      line-height: 60px;
+      list-style: none;
+      background: rgba(0, 0, 0, 0);
+      overflow: hidden;
+      color: #fff;
+      padding: 0;
+      text-align: right;
+      margin: 0;
+      padding-right: 40px;
+      transition: 1s;
+}
+
+nav.black ul {
+      background: #000;
+}
+
+nav.black ul li a{
+	color: #fff;
+}
+nav ul li {
+			/* color: #CC231E; */
+      display: inline-block;
+      padding: 16px 40px;;
+}
+
+nav ul li a {
+      text-decoration: none;
+      /* color: #CC231E; */
+			color: #fff;
+      font-size: 16px;
+			font-weight: 400;
+}
+
+.menu-icon {
+      line-height: 80px;
+      width: 100%;
+      background: #000;
+      text-align: right;
+      box-sizing: border-box;
+      padding: 15px 24px;
+      cursor: pointer;
+      color: #fff;
+      display: none;
+}
+.navigation_bar{
+	z-index: 1000;
+}
+.iw-openstatus{
+	text-align: center;
+}
+@media (max-width: 900px){
+	.map {
+	        height: 75vw;
+	      }
+
+}
+
+@media(max-width: 786px) {
+
+      .logo {
+            position: fixed;
+            top: 0;
+            margin-top: 16px;
+      }
+
+      nav ul {
+            max-height: 0px;
+            background: #000;
+      }
+
+      nav.black ul {
+            background: #000;
+      }
+
+      .showing {
+            max-height: 34em;
+      }
+
+      nav ul li {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 24px;
+            text-align: center;
+      }
+
+      .menu-icon {
+            display: block;
+      }
+}
+@media (max-width: 767px){
+	#results {
+		padding: 0;
+		height: auto;
+		overflow-y: scroll;
+		margin-right: 0px;
+	margin-left: 0px;
+
+	}
+}
+
+/* @media (max-width: 400px){
+	.map {
+	        height: 100px;
+				}
+
+} */
+
+.banner p {
+	font-family: 'Amatic SC';
+	font-size: 48px;
+}
+p{
+	font-family: 'Varela Round';
+}
+h4{
+	font-family: 'Varela Round';
+}
+small{
+	font-family: 'Varela Round';
+}
+.map_param_holder{
+	font-family: 'Varela Round';
+}
+
+h5{
+	font-family: 'Varela Round';
+}
+
+.hvr-bounce-to-bottom{
+	font-family: 'Varela Round';
+}
+
+.geofence{
+	padding-left:100px;
+}
+
+.longs{
+	width: 100%;
+
+}
+.circle_wrap{
+	display: flex;
+	justify-content: center;
+}
+
+#circle {
+    width: 25px;
+    height: 25px;
+    background: red;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+
+}
+.short_pad{
+	margin-bottom: 4px;
+}

@@ -178,17 +178,22 @@
     </div>
 
   </div>
-  <div class="row map_param_holder">
-    <div class="col-sm-12 col-md-10">
+  <div class = "row_fluid longs">
+  <div class="row map_param_holder row_fluid">
+    <div class="col-sm-12 col-md-12">
       <div class="row search_bar_holder">
         <div class="col-8 autocomplete_holder">
           <input id="autocomplete" placeholder="Where do you want to eat?" type="text" />
         </div>
-        <div class="col-2 currentloc_holder">
+        <div class="col-2 currentloc_holder text-center">
           <button id="mylocation">Current Location</button>
         </div>
-
-
+        <div class="col-2 text-center">
+          <p class="short_pad">Location Safety Status</p>
+          <div class = "circle_wrap">
+          <div id="circle"></div>
+        </div>
+        </div>
 
       </div>
 
@@ -242,7 +247,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> </div>
   <div class="row">
     <div class="map_container col-12 col-md-8">
       <div class="map">
