@@ -6,9 +6,9 @@ Therefore, we built this platform to help people physically distance, get the fo
 
 To Run:
 
-Clone Repository
-run `npm install`
-run `npm start`
-There might be a few python packages you need to install
-Make Sure you are Using Python3
-Application should be running at `localhost:3000`
+- Clone Repository
+- run `npm install`
+- run `npm start`
+- There might be a few python packages you need to install
+- Make Sure you are Using Python3
+- Application should be running at `localhost:3000`
