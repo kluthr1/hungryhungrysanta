@@ -52,6 +52,12 @@ body{
 	margin-bottom: 0.5em;
 
 }
+.ri_img{
+	float:left;
+	height: 40px;
+	margin-bottom: 2px;
+
+}
 .ri_name_text{
 	float:left;
 	margin-bottom: 0.5em;
@@ -358,7 +364,9 @@ small{
 .map_param_holder{
 	font-family: 'Varela Round';
 }
-
+.open_status{
+		font-family: 'Varela Round';
+}
 h5{
 	font-family: 'Varela Round';
 }
@@ -383,7 +391,7 @@ h5{
 #circle {
     width: 25px;
     height: 25px;
-    background: red;
+    background: #00FF00;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;

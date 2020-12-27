@@ -191,6 +191,7 @@ function search() {
 }
 
 function processMarker(results, place_details, lat, lng) {
+    document.getElementById("circle").style.backgroundColor= "#00FF00";
     console.log("Number of Results", results.length);
     var all_details = JSON.parse(place_details);
     console.log(results);
@@ -293,7 +294,7 @@ function processMarker(results, place_details, lat, lng) {
             center: results[i].geometry.location,
             radius: visual_density,
         });
-
+        console.log("current_density_early: " +current_density);
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
         markers[i].placeResult = results[i];
@@ -302,56 +303,111 @@ function processMarker(results, place_details, lat, lng) {
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 10);
         addResult(markers[i], i);
-        addy = results[i]['vicinity']+"," +results[i]['plus_code']['compound_code'].split(",")[1] +"," +results[i]['plus_code']['compound_code'].split(",")[2];
-        addy = addy.replace(/\s/g, '+');
-        $.ajax({
-          url:"https://maps.googleapis.com/maps/api/geocode/json?address=" +addy+"&key=AIzaSyBjqoKTMlzPkY9EE9luDcpTXrftaxjifik",
-          success: function(result){
-            lat2 = result["results"][0]['geometry']['location']['lat']
-            lng2 = result["results"][0]['geometry']['location']['lng']
-            Radar.getDistance({
-              origin: {
-                latitude: lat,
-                longitude: lng
-              },
-              destination: {
-                latitude: lat2,
-                longitude: lng2
-              },
-              modes: [
-                'foot',
-                'car'
-              ],
-              units: 'imperial'
-            }, function(err, result) {
-              if (!err) {
-                // do something with result.routes
-               var dist = result["routes"]["foot"]["distance"]["value"];
-               console.log("dist:" + dist);
-               console.log(current_density);
-                if ((dist) < 1500){
-                  console.log("we here");
-                  console.log(place_info['current_popularity']);
-                  if(markers[i].estimatedPop  > 50){
-                    color = "#FF0000";
-                  }
-                  if (color!= "#FF0000"){
-                    if(markers[i].estimatedPop  > 25){
-                      color = "#FFBF00";
-                    }
-                  }
-                }
-              }
-            });
+        temp = radarStuff(markers[i], lat, lng, i)
+        console.log("temp");
+        // addy = results[i]['vicinity']+"," +results[i]['plus_code']['compound_code'].split(",")[1] +"," +results[i]['plus_code']['compound_code'].split(",")[2];
+        // addy = addy.replace(/\s/g, '+');
+        // $.ajax({
+        //   url:"https://maps.googleapis.com/maps/api/geocode/json?address=" +addy+"&key=AIzaSyBjqoKTMlzPkY9EE9luDcpTXrftaxjifik",
+        //   success: function(result){
+        //     lat2 = result["results"][0]['geometry']['location']['lat']
+        //     lng2 = result["results"][0]['geometry']['location']['lng']
+        //     Radar.getDistance({
+        //       origin: {
+        //         latitude: lat,
+        //         longitude: lng
+        //       },
+        //       destination: {
+        //         latitude: lat2,
+        //         longitude: lng2
+        //       },
+        //       modes: [
+        //         'foot',
+        //         'car'
+        //       ],
+        //       units: 'imperial'
+        //     }, function(err, result) {
+        //       if (!err) {
+        //         // do something with result.routes
+        //        var dist = result["routes"]["foot"]["distance"]["value"];
+        //        console.log("dist:" + dist);
+        //        console.log("current density:" + current_density);
+        //         if ((dist) < 1500){
+        //           console.log("we here");
+        //           console.log(place_info['current_popularity']);
+        //           if(markers[i].estimatedPop  > 50){
+        //             color = "#FF0000";
+        //           }
+        //           if (color!= "#FF0000"){
+        //             if(markers[i].estimatedPop  > 25){
+        //               color = "#FFBF00";
+        //             }
+        //           }
+        //         }
+        //       }
+        //     });
 
-        }});
+      //}};
+      //);
 
-        console.log(color);
+        //console.log(color);
 
     };
-    document.getElementById("circle").style.backgroundColor=color;
 
 };
+
+function radarStuff(marker, lat, lng, marker_idx) {
+  addy = marker['placeResult']['vicinity']+"," +marker['placeResult']['plus_code']['compound_code'].split(",")[1] +"," +marker['placeResult']['plus_code']['compound_code'].split(",")[2];
+  addy = addy.replace(/\s/g, '+');
+  $.ajax({
+    url:"https://maps.googleapis.com/maps/api/geocode/json?address=" +addy+"&key=AIzaSyBjqoKTMlzPkY9EE9luDcpTXrftaxjifik",
+    success: function(result){
+      console.log(result)
+      lat2 = result["results"][0]['geometry']['location']['lat']
+      lng2 = result["results"][0]['geometry']['location']['lng']
+      Radar.getDistance({
+        origin: {
+          latitude: lat,
+          longitude: lng
+        },
+        destination: {
+          latitude: lat2,
+          longitude: lng2
+        },
+        modes: [
+          'foot',
+          'car'
+        ],
+        units: 'imperial'
+      }, function(err, result) {
+        if (!err) {
+          // do something with result.routes
+         var dist = result["routes"]["foot"]["distance"]["value"];
+         console.log("dist:" + dist);
+         console.log("current density:" + marker['estimatedPop']);
+         console.log(document.getElementById("circle"));
+         console.log($("#circle").css('background-color'));
+
+          if ((dist) < 1500){
+            console.log("we here");
+            if(marker['estimatedPop']  > 50){
+              $("#circle").css('background-color', '#FF0000');
+            }
+            else if(marker['estimatedPop']  > 25){
+
+              if ($("#circle").css('background-color') != "#FF0000" && $("#circle").css('background-color') != "rgb(255, 0, 0)" ){
+                $("#circle").css('background-color', '#FFBF00');
+              }
+            }
+
+          }
+        }
+      });
+
+  }});
+
+};
+
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -436,10 +492,18 @@ function addResult(marker, i) {
     var addr_p = document.createElement('p');
     addr_p.setAttribute('class', 'ri_addr_text');
     var addr = document.createTextNode(result.vicinity);
+
+    var text_elem2 = document.createElement('div');
+    text_elem2.setAttribute('class', 'col-12');
+    text_elem2.setAttribute('id', 'ri_text_elem');
+
     var santa_approves = document.createElement('p');
     santa_approves.innerHTML = 'Santa Approved';
     santa_approves.setAttribute('class', 'ri_addr_text');
     santa_approves.style.color = 'green';
+
+    var santa_img = document.createElement('img');
+
 
     // Updating HTML Tree
     results.appendChild(ri);
@@ -449,10 +513,12 @@ function addResult(marker, i) {
     icon_elem.appendChild(icon_img);
 
     text_row.appendChild(text_elem);
+    text_row.appendChild(text_elem2);
     text_elem.appendChild(name_p);
     text_elem.appendChild(addr_p);
     name_p.appendChild(name);
     addr_p.appendChild(addr);
+
 
     // Adding Chart if applicable
     pop_info = marker.placeDetails["populartimes"];
@@ -468,14 +534,22 @@ function addResult(marker, i) {
     }
 
     if (pop_info != null) {
-        if(current_pop > 75){
-          santa_approves.innerHTML = 'Santa Is Concerned';
+        if(current_pop > 50){
+          santa_approves.innerHTML = 'High Traffic';
           santa_approves.style.color = 'red';
+          santa_img.setAttribute('class', 'ri_img');
+          santa_img.setAttribute('src', 'images/coal.png');
+          text_elem2.appendChild(santa_img);
+
         }else if(current_pop >25){
-          santa_approves.innerHTML = 'Santa Is Cautious';
+          santa_approves.innerHTML = 'Be Cautious';
           santa_approves.style.color = '#FFBF00';
+        }else{
+          santa_img.setAttribute('class', 'ri_img');
+          santa_img.setAttribute('src', 'images/sleigh.png');
+          text_elem2.appendChild(santa_img);
         }
-        text_elem.appendChild(santa_approves);
+        text_elem2.appendChild(santa_approves);
 
 
         chart_row = document.createElement('div');
