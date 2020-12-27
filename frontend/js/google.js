@@ -1082,5 +1082,5 @@ Radar.ipGeocode(function(err, result) {
       result.address.latitude + " " + result.address.longitude);
 
 
-  }
+  }  
 });
